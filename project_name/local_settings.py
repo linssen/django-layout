@@ -2,17 +2,16 @@
 Example settings for local development
 
 Use this file as a base for your local development settings and copy
-it to {{ project_name }}/settings/local.py. It should not be checked into
+it to {{ project_name }}/local_settings.py. It should not be checked into
 your code repository.
 
 """
-from {{ project_name }}.settings.base import *   # pylint: disable=W0614,W0401
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('You', 'your@email'),
+    ('Wil Linssen', 'wil@linssen.me'),
 )
 MANAGERS = ADMINS
 
