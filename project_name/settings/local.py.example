@@ -6,6 +6,7 @@ it to {{ project_name }}/local_settings.py. It should not be checked into
 your code repository.
 
 """
+from {{ project_name }}.settings.base import *
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

@@ -189,8 +189,3 @@ LOGGING = {
         },
     }
 }
-
-try:
-    from {{ project_name }}.local_settings import *
-except:
-    pass

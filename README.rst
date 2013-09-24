@@ -27,7 +27,7 @@ To bootstrap the project::
     cd path/to/{{ project_name }}/repository
     pip install -r requirements.pip
     pip install -e .
-    cp {{ project_name }}/local_settings.py.example {{ project_name }}/local_settings.py
+    cp {{ project_name }}/settings/local.py.example {{ project_name }}/settings.py
     manage.py syncdb --migrate
 
 Documentation

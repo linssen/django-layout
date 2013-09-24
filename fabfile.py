@@ -4,11 +4,11 @@ import posixpath
 import re
 
 env.project_name = '{{ project_name }}'
-env.repository = 'git@github.com:lincolnloop/{{ project_name }}.git'
+env.repository = 'git@github.com:linssen/{{ project_name }}.git'
 env.local_branch = 'master'
 env.remote_ref = 'origin/master'
 env.requirements_file = 'requirements.pip'
-env.restart_command = 'supervisorctl restart {project_name}'.format(**env)
+env.restart_command = 'service apache2 restart {project_name}'.format(**env)
 env.restart_sudo = True
 
 
@@ -17,7 +17,7 @@ env.restart_sudo = True
 #==============================================================================
 
 @task
-def live():
+def production():
     """
     Use the live deployment environment.
     """
@@ -27,29 +27,11 @@ def live():
         'db': [server],
     }
     env.system_users = {server: 'www-data'}
-    env.virtualenv_dir = '/srv/www/{project_name}'.format(**env)
+    env.virtualenv_dir = '/var/www/{project_name}'.format(**env)
     env.project_dir = '{virtualenv_dir}/src/{project_name}'.format(**env)
     env.project_conf = '{project_name}.settings.local'.format(**env)
 
-
-@task
-def dev():
-    """
-    Use the development deployment environment.
-    """
-    server = '{{ project_name }}.dev.lincolnloop.com'
-    env.roledefs = {
-        'web': [server],
-        'db': [server],
-    }
-    env.system_users = {server: 'www-data'}
-    env.virtualenv_dir = '/srv/www/{project_name}'.format(**env)
-    env.project_dir = '{virtualenv_dir}/src/{project_name}'.format(**env)
-    env.project_conf = '{project_name}.conf.local'.format(**env)
-
-
-# Set the default environment.
-dev()
+production()
 
 
 #==============================================================================
